@@ -1,0 +1,61 @@
+
+<form id="addForm" method="post" enctype="multipart/form-data">
+	<table class="formTable">
+		<tr>
+			<td>fcloumn：</td>
+			<input type="hidden" name="id" />
+			
+			<td><select class="easyui-combotree" name="fcloumnid"
+				id="parent1" style="width: 150px;">
+				</select></td>
+		</tr>
+		<tr>
+			<td>ftitle：</td>
+			<td><input class="easyui-textbox" name="ftitle" 
+				type="text" data-options="width: 150" /></td>
+		</tr>
+		<tr>
+			<td>freceRange：</td>
+			<td>
+			<select class="easyui-combotree" name="freceRangeId"
+				id="parent2" style="width: 150px;">
+				</select></td>
+		</tr>
+		<tr>
+			<td>fnoticeDetail：</td>
+			<td><input class="easyui-textbox" name="fnoticeDetail" 
+				type="text" data-options="width: 150" /></td>
+		</tr>
+
+		
+		<tr>
+			<td>附件：</td>
+			<td>
+			<input name="flongnumber1" class="easyui-filebox"   type="file"/>
+			<input name="flongnumber2" class="easyui-filebox i1"  style="display:none" type="file"/>
+			<input name="flongnumber3" class="easyui-filebox i2"  style="display:none" type="file"/>
+			<input name="flongnumber4" class="easyui-filebox i3"  style="display:none" type="file"/>
+			<input name="flongnumber5" class="easyui-filebox i4"  style="display:none" type="file"/>
+			<input name="flongnumber6" class="easyui-filebox i5"  style="display:none" type="file"/>
+			<input name="flongnumber7" class="easyui-filebox i6"  style="display:none" type="file"/>
+			<input name="flongnumber8" class="easyui-filebox i7"  style="display:none" type="file"/>
+			<input name="flongnumber9" class="easyui-filebox i8"  style="display:none" type="file"/>
+			<input name="flongnumber0" class="easyui-filebox i9"  style="display:none" type="file"/>
+			
+			<a href="javascript:void(0)" class="addfile">添加..</a>
+			<script>
+
+			var sum = 1;
+			$('.addfile').click(function(){
+				sum=sum+1;
+				var date = 'i'+sum;
+				$('.'+date+'').show();
+				if(sum==9){
+					$('.addfile').hide();
+				}
+			});
+			</script>
+			</td>
+		</tr>
+	</table>
+</form>

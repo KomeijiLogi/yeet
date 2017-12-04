@@ -1,0 +1,47 @@
+﻿<?xml version="1.0"?>
+<XForm>
+    <Header>
+        <Method>Post</Method>
+        <ProcessName>XS0205002_æ´ç‘åŒ»ç”¨åˆ¶å“å…¬å¸æ ·å“ç”³è¯·_æµç¨‹</ProcessName>
+        <ProcessVersion>1.0</ProcessVersion>
+        <DraftGuid></DraftGuid>
+        <OwnerMemberFullName>BPMOU://å¨é«˜é›†å›¢/å¨é«˜é›†å›¢æ€»éƒ¨/å¨é«˜é›†å›¢æœ¬éƒ¨/æµç¨‹ä¸ä¿¡æ¯éƒ¨(ä¿¡æ¯æŠ€æœ¯)/00000088</OwnerMemberFullName>
+        <Action>æäº¤</Action>
+        <Comment></Comment>
+        <InviteIndicateUsers></InviteIndicateUsers>
+    </Header>
+    <FormData>
+        <BPM_JRYPSQ_A>
+            <fbillno>è‡ªåŠ¨ç”Ÿæˆ</fbillno>
+            <fname>ç‹æ™“è‡£</fname>
+            <farea>æµç¨‹ä¸ä¿¡æ¯éƒ¨(ä¿¡æ¯æŠ€æœ¯)</farea>
+            <fdate>2017-05-27 00:00:00</fdate>
+            <ftel>1</ftel>
+            <fyplx>æ•·æ–™</fyplx>
+            <fcusno>2</fcusno>
+            <fcusname>3</fcusname>
+            <fremark>4</fremark>
+            <fj>201705270006;201705270007</fj>
+        </BPM_JRYPSQ_A>
+        <BPM_JRYPSQ_B>
+            <RelationRowGuid>1</RelationRowGuid>
+            <RowPrimaryKeys></RowPrimaryKeys>
+            <fentryno>1</fentryno>
+            <fwlno>11</fwlno>
+            <fwlname>111</fwlname>
+            <fggxh>333</fggxh>
+            <fsl>444</fsl>
+            <fremark>55</fremark>
+        </BPM_JRYPSQ_B>
+        <BPM_JRYPSQ_B>
+            <RelationRowGuid>2</RelationRowGuid>
+            <RowPrimaryKeys></RowPrimaryKeys>
+            <fentryno>2</fentryno>
+            <fwlno>22</fwlno>
+            <fwlname>222</fwlname>
+            <fggxh>333</fggxh>
+            <fsl>444</fsl>
+            <fremark></fremark>
+        </BPM_JRYPSQ_B>
+    </FormData>
+</XForm>

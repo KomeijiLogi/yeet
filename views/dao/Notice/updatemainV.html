@@ -1,0 +1,259 @@
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	    <meta name="description" content="">
+		<meta name="keywords" content="" />
+	    <!--  script type="text/javascript" src="${ctx}/static/js/ueditor/third-party/jquery.min.js"></script>-->
+	    		<script type="text/javascript" src="${ctx}/static/js/uploadify/jquery-1.10.2.js"></script>
+	    <script type="text/javascript" src="${ctx}/plugins/easyui/jquery.easyui.min.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/ueditor/ueditor.config.js"></script>
+	    <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/ueditor/ueditor.all.js"> </script>
+	    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+	    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+	    <script type="text/javascript" charset="utf-8" src="${ctx}/static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+	    <script type="text/javascript" src="${ctx}/plugins/jquery-ext/util.js"></script>
+	    <script type="text/javascript" src="${ctx}/plugins/easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="${ctx}/plugins/easyui/locale/easyui-lang-zh_CN.js"></script>
+	    
+	    <script type="text/javascript" src="${ctx}/plugins/jquery-ext/jquery-ext.js"></script>
+		<script type="text/javascript" src="${ctx}/plugins/jquery-ext/easyui-ext.js"></script>
+
+		<link href="${ctx}/static/css/uploadify.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="${ctx}/static/js/uploadify/jquery.uploadify.js"></script>
+	    <script type="text/javascript" src="${ctx}/static/js/sys/noticeAdd.js"></script>
+		<title>公告在线编辑</title>
+		<link rel="stylesheet" href="${ctx}/static/css/addInfo.css">
+  	    <script type="text/javascript">
+	   $(document).ready(function() {
+		   $("#uploadify").uploadify(
+										{
+											//开启调试
+											'debug' : false,
+											//是否自动上传
+											'auto' : false,
+											//超时时间
+											'successTimeout' : 99999,
+											//附带值
+											'formData' : {
+												
+											},
+											'method':'get',
+											//flash
+											'swf' : "${ctx}/static/js/uploadify/uploadify.swf",
+											//不执行默认的onSelect事件
+											'overrideEvents' : [ 'onDialogClose' ],
+											//文件选择后的容器ID
+											'queueID' : 'uploadfileQueue',
+											//服务器端脚本使用的文件对象的名称 $_FILES个['upload']
+											'fileObjName' : 'upload',
+											//上传处理程序
+											'uploader' : '/yeet/t_notice_base/uploadFile',
+											//浏览按钮的背景图片路径
+											//'buttonImage' : 'upbutton.gif',
+											 'buttonText'     : '添加附件',
+											//浏览按钮的宽度
+											'width' : '100',
+											//浏览按钮的高度
+											'height' : '32',
+											//expressInstall.swf文件的路径。
+											'expressInstall' : 'expressInstall.swf',
+											//在浏览窗口底部的文件类型下拉菜单中显示的文本
+											'fileTypeDesc' : '支持的格式：',
+											//允许上传的文件后缀
+											'fileTypeExts' : '*.pdf;*.jpg;*.jpge;*.gif;*.png;*.doc;*.docx;*.xls;*.xlsx;*.ppt;*.pptx;*.txt;*.zip;*.rar',
+											//上传文件的大小限制
+											'fileSizeLimit' : '20MB',
+											//上传数量
+											'queueSizeLimit' : 10,
+											//每次更新上载的文件的进展
+											'onUploadProgress' : function(file,
+													bytesUploaded, bytesTotal,
+													totalBytesUploaded,
+													totalBytesTotal) {
+												//有时候上传进度什么想自己个性化控制，可以利用这个方法
+												//使用方法见官方说明
+											},
+											//选择上传文件后调用
+											'onSelect' : function(file) {
+
+											},
+											//返回一个错误，选择文件的时候触发
+											'onSelectError' : function(file,
+													errorCode, errorMsg) {
+												switch (errorCode) {
+												case -100:
+													alert("上传的文件数量已经超出系统限制的"
+															+ $('#file_upload')
+																	.uploadify(
+																			'settings',
+																			'queueSizeLimit')
+															+ "个文件！");
+													break;
+												case -110:
+													alert("文件 ["
+															+ file.name
+															+ "] 大小超出系统限制的"
+															+ $('#file_upload')
+																	.uploadify(
+																			'settings',
+																			'fileSizeLimit')
+															+ "大小！");
+													break;
+												case -120:
+													alert("文件 [" + file.name
+															+ "] 大小异常！");
+													break;
+												case -130:
+													alert("文件 [" + file.name
+															+ "] 类型不正确！");
+													break;
+												}
+											},
+											//检测FLASH失败调用
+											'onFallback' : function() {
+												alert("您未安装FLASH控件，无法上传图片！请安装FLASH控件后再试。");
+											},
+											//上传到服务器，服务器返回相应信息到data里
+											'onUploadSuccess' : function(file,
+													data, response) {
+												
+											},'onQueueComplete' : function(queueData) {
+									            //上传队列全部完成后执行的回调函数    
+												window.location.reload();
+									 } 
+
+										});
+					});
+					
+				 function doUpLoad(type,billid){
+					
+					    $('#uploadify').uploadify('settings','formData',{"type":type,'billid':billid});
+				        $('#uploadify').uploadify('upload','*');
+			
+				    }
+				  function closeLoad(){
+				        $('#uploadify').uploadify('cancel','*');
+				        
+				    }
+</script>
+	</head>
+	<body>
+	<form method="post" id="form21">
+		<!--<div class="infoBg">-->
+			<div class="addInfo">
+				<div class="infoTitle">
+					<h3>公告信息</h3>
+					<span>×</span>
+				</div>
+				<div class="infoContent">
+				<div >
+					<dl>
+						<dt>栏目名称：</dt>
+						<dd>
+							<select name ="fcloumnid" >
+							<#if cloumnlist??>
+							<#list cloumnlist as k>
+								<#if k.id==noticeObject.fcloumnid>
+								<option value="${k.id !}" selected="selected" >${k.ftitle !}</option>
+								
+								</#if>
+							</#list>
+							</#if>
+							</select>
+						</dd>
+					</dl>
+					
+					<dl>
+						<dt>发送范围：</dt>
+						<dd>
+						
+							<select name = "freceRangeId">
+							<#if ReceRangelist??>
+							<#list ReceRangelist as k>
+								<#if k.id==noticeObject.freceRangeId>
+								<option value="${k.id !}" selected="selected">${k.fname !}</option>
+								
+								</#if>
+							</#list>
+							</#if>
+							</select>
+							
+						</dd>
+					</dl>
+					
+					<dl>
+						<dt>标题名称：</dt>
+						<dd style="width: 500px;"> 
+							<input type = "hidden"  name="fffid" value="${noticeObject.id !}">
+							<input type = "hidden"  name="fuserid" value="${noticeObject.fuserid!}">
+							<input type = "hidden"  name="fcreatetime" value="${noticeObject.fcreatetime !}">
+							<input type = "hidden"  name="freleasetime" value="${noticeObject.freleasetime !}">
+							<input type = "hidden"  name="fisRelease" value="${noticeObject.fisRelease !}">
+							<input type = "hidden"  name="fupdateTime" value="${noticeObject.fupdateTime !}">
+							<input type = "hidden"  name="flongnumber" value="${noticeObject.flongnumber !}">
+							<input type = "hidden"  name="flongnumber" value="${noticeObject.ftitle !}">
+							<input  type="text" name = "ftitle" style="width: 80%;" disabled="disabled" value="${noticeObject.ftitle !}"/>
+						</dd>
+					</dl>
+					
+					<dl>
+						<dt>发布内容：</dt>
+						<dd>
+							<input  type="hidden" class="fnoticeDetail1" name = "fnoticeDetail"/>
+						</dd>
+					</dl>
+					<!--style给定宽度可以影响编辑器的最终宽度-->
+					<script type="text/plain" id="myEditor" style="width:100%;height:340px;">${noticeObject.fnoticeDetail !}</script>
+					<dl>
+						<dt>已上传附件：</dt>
+						<dd>
+							
+						</dd>
+					</dl>
+					<div style="margin: 0 0 0 40px;">
+					<#if fileList??>
+					<#list fileList as k>
+						<div class="delDiv"><span>${k.ffileName !}</span>&nbsp&nbsp</div>
+					</#list>
+					</#if>
+					</div>
+					
+	             </div>
+				<!--底部开始-->
+				<div class="infoFooter">
+					<a class="cancel">取消</a>
+					<#if button ==2>
+						<a class="infoFooter2">撤销置顶</a>
+						<a class="infoFooter1">撤销发布</a>
+					<#elseif button ==3 >
+						<a class="infoFooter3">置顶公告</a>
+						<a class="infoFooter4">撤销公告</a>
+					<#else>
+						<a class="cancel">取消</a>
+						<a class="cancel">取消</a>
+					</#if>
+					
+					
+					
+					
+				</div>
+				<!--底部结束-->
+				
+				
+				</div>
+				</div>
+				</form>
+				
+			
+	</body>
+	<script type="text/javascript">
+    //实例化编辑器
+       var ue = UE.getEditor('myEditor');
+    	
+ 
+    
+    </script>
+</html>

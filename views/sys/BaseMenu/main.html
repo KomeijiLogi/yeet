@@ -1,0 +1,58 @@
+<#include "/common/_layout.html"/> <@layout/>
+<script type="text/javascript" src="${ctx}/static/js/sys/basemenu.js"></script>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'west',split:true,border:false,title:'功能菜单列表'"
+		style="width: 300px">
+		<table id="tg"
+			data-options="singleSelect: true">
+			<thead>
+				<tr>
+					<th data-options="field:'id',hidden:true">id</th>
+					<th data-options="field:'name'" width="10%">名称</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<div
+		data-options="region:'center',split:true,border:false,title:'功能详细列表'">
+		<table id="dg"
+			data-options="toolbar:'#toolbar',onBeforeLoad: function(row,param){
+  			 if(!row){
+				 param.type='O';
+			 }
+}">
+			<thead>
+				<tr>
+					<th data-options="field:'id',hidden:true">id</th>
+					<th data-options="field:'ck',checkbox:true"></th>
+					<th align="center"  width="8%" data-options="field:'name'">云:功能名称</th>
+					<th align="center"  width="8%" data-options="field:'permCode'">云:功能权限</th>
+					<th align="center" width="8%" data-options="field:'furl'">云:访问路径</th>
+					<th align="center" width="8%" data-options="field:'ficoncls'">云:图片路径</th>
+					<th align="center" width="8%" data-options="field:'findexiconcls'">云:首页图片路径</th>
+					<th align="center" width="8%" data-options="field:'fisadmin'">云:人员权限(0/1/11)</th>
+					<th align="center" width="8%" data-options="field:'fsort'">云:排序级别</th>
+					<th align="center" width="8%" data-options="field:'fid'">云:消息ID</th>
+					<th align="center" width="8%" data-options="field:'fisdataspit',formatter:function(value,row,index){if(value==0||value=='0'){ return '否';}else if(value==1||value=='1'){ return '是';}}">云:是否数据隔离</th>
+					<th align="center" width="8%" data-options="field:'fvalue'">云:模块值</th>
+					<!-- <th align="center" width="8%" data-options="field:'yuntype'">云:是否具有消息提醒</th> -->
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<div id="toolbar" style="padding: 5px; height: auto;">
+		<div style="display: inline; margin-left: 5px;">
+			<a class="easyui-linkbutton" id="add" data-options="iconCls:'icon-add',plain:true">添加</a>
+			<a class="easyui-linkbutton" id="del" data-options="iconCls:'icon-remove',plain:true">删除</a> 
+			<a class="easyui-linkbutton" id="edit" data-options="iconCls:'icon-edit',plain:true">修改</a> 
+		</div>
+	</div>
+
+	<div id="addDialog" class="easyui-dialog"
+		data-options="closed:true,modal:true,maximizable:true"
+		style="width: 400px; height: 440px;"><#include
+		"addPermission.html"/></div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<#include "/common/_layout.html"/> <@layout/>
+<script type="text/javascript" src="${ctx}/static/js/sys/OperationPlatform.js"></script>
+<script>
+Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+
+    	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    	
+    
+    
+}
+</script>
+</head>
+<body class="easyui-layout">
+	
+
+		<table id="dg" title="云之家用户列表" data-options="toolbar:'#toolbar'">
+		<thead>
+			<tr>
+				 <th data-options="field:'id',hidden:true">id</th>
+				<th data-options="field:'ck',checkbox:true"></th> 
+				<th align="center" data-options="field:'openId'" width="10%">云之家id</th>
+				<th align="center" data-options="field:'name'" width="10%">姓名</th>
+				<th align="center" data-options="field:'photoUrl'" width="10%">头像URL</th>
+				<th align="center" data-options="field:'phone'" width="10%">手机号码</th>
+				<th align="center" data-options="field:'email'" width="10%">邮箱</th>
+				<th align="center" data-options="field:'department'" width="10%">部门</th>
+				<th align="center" data-options="field:'jobTitle'" width="10%">职位</th>
+				<th align="center" width="10%"
+					data-options="field:'gender',formatter:function(value,row,index){if(value=='1'||value==1){return '男';}else{return '女'}}">性别</th>
+				<th align="center" width="10%"
+				data-options="field:'status',formatter:function(value,row,index){if(value=='1'||value==1){return '开启状态';}else{return '关闭状态'}}">状态</th>
+				<th align="center" width="10%"
+				data-options="field:'orgUserType',formatter:function(value,row,index){if(value=='1'||value==1){return '是';}else{return '否'}}">是否负责人</th>
+				
+			</tr>
+		</thead>
+	</table>
+
+	<div id="toolbar" style="padding: 5px; height: auto;">
+		<div style="display: inline; margin-left: 5px;">
+			<a class="easyui-linkbutton" id="recoverAll" data-options="iconCls:'icon-reload',plain:true">同步全部云之家用户</a>
+			<span class="toolbar-item dialog-tool-separator"></span>
+			<a class="easyui-linkbutton" id="recover" data-options="iconCls:'icon-reload',plain:true">同步已更新云之家用户</a>
+			<span class="toolbar-item dialog-tool-separator"></span>
+		</div>
+		<div style="margin-left: 4px;">
+			<form action="#" id="tForm" style="display: inline;">
+				<span style="margin-left: 5px;">状态：
+					<select class="easyui-combobox" style="width: 100px;" name="oisOpen">
+						<option value="1">已开通</option>
+						<option value="0">未开通</option>
+					</select>
+				</span> 
+				<span style="margin-left: 5px;">关键字搜索：
+					<input class="easyui-textbox" style="width: 120px;" name="seachId" />
+				</span>
+				<a href="#" class="easyui-linkbutton" style="width: 150px; margin-right: 5px; float: right;" id="search" 
+					iconCls="icon-search">查询</a>
+			</form>
+		</div>
+		
+	</div>
+	<div id="addDialog" class="easyui-dialog" data-options="closed:true,modal:true,maximizable:true" 
+		style="width: 270px; height: 280px;"><#include "addmain.html"/></div>
+</body>
+</html>

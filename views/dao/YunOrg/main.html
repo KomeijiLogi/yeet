@@ -1,0 +1,62 @@
+<#include "/common/_layout.html"/> <@layout/>
+<script type="text/javascript" src="${ctx}/static/js/sys/yunOrg.js"></script>
+<script>
+Date.prototype.Format = function (fmt) { //author: meizz 
+    var o = {
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "h+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
+    };
+
+    	if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    	
+    
+    
+}
+</script>
+</head>
+<body class="easyui-layout">
+	
+
+		<table id="dg" title="云之家组织列表" data-options="toolbar:'#toolbar'">
+		<thead>
+			<tr>
+				 <th data-options="field:'id',hidden:true">id</th>
+				<th data-options="field:'ck',checkbox:true"></th> 
+				<th align="center" data-options="field:'orgid'" width="10%">组织ID</th>
+				<th align="center" data-options="field:'parentid'" width="10%">父组织ID</th>
+				<th align="center" data-options="field:'name'" width="6%">组织名称</th>
+				<th align="center" data-options="field:'depertment'" width="20%">组织长名称</th>
+				
+			</tr>
+		</thead>
+	</table>
+
+	<div id="toolbar" style="padding: 5px; height: auto;">
+		<div style="display: inline; margin-left: 5px;">
+			<a class="easyui-linkbutton" id="recoverAll" data-options="iconCls:'icon-reload',plain:true">同步云之家组织</a>
+			<span class="toolbar-item dialog-tool-separator"></span>
+			
+		</div>
+		<div style="margin-left: 4px;">
+			<form action="#" id="tForm" style="display: inline;">
+				
+				<span style="margin-left: 5px;">关键字搜索：
+					<input class="easyui-textbox" style="width: 120px;" name="seachId" />
+				</span>
+				<a href="#" class="easyui-linkbutton" style="width: 150px; margin-right: 5px; float: right;" id="search" 
+					iconCls="icon-search">查询</a>
+			</form>
+		</div>
+		
+	</div>
+	
+</body>
+</html>

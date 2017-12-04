@@ -1,0 +1,61 @@
+<form id="addForm" method="post">
+	<table class="formTable">
+		<tr>
+			<td>云:功能名称：</td>
+			<td><input type="hidden" name="id" />
+				 <input name="name" type="text" class="easyui-textbox" style="width: 150px;" /></td>
+		</tr>
+		<tr>
+			<td>云:功能权限：</td>
+			<td><input name="permCode" type="text" class="easyui-textbox"
+				style="width: 150px;" /></td>
+		</tr>
+			<tr>
+			<td>云:人员权限：</td>
+			<td><input name="fisadmin" type="text" class="easyui-textbox"
+				style="width: 150px;" /></td>
+		</tr>
+		<tr>
+			<td>云:图片路径：</td>
+			<td><input name="ficoncls" type="text" class="easyui-textbox"
+				style="width: 150px;" /></td>
+		</tr>
+		<tr>
+			<td>云:首页图片路径：</td>
+			<td><input name="findexiconcls" type="text" class="easyui-textbox"
+				style="width: 150px;" /></td>
+		</tr>
+		<tr>
+			<td>云:访问路径：</td>
+			<td><input name="furl" type="text" class="easyui-textbox"
+				style="width: 150px;" /></td>
+		</tr>
+		<tr>
+			<td>云:排序级别：</td>
+			<td><input name="fsort" type="text" class="easyui-textbox"
+				style="width: 150px;" /></td>
+		</tr>
+		<tr>
+			<td>上级菜单：</td>
+			<td> <select class="easyui-combotree" name="parentId"
+				id="parent" style="width: 150px;">
+				</select></td>
+		</tr>
+		<tr>
+			<td>云:消息ID：</td>
+			<td><input name="fid" type="text" class="easyui-textbox"
+				data-options="width: 150" /></td>
+		</tr>
+		<tr>
+			<td>云:消息隔离：</td>
+			<td><input type="radio" id="man" name="fisdataspit" value="0" checked="true" /><label
+				for="man">否</label> <input type="radio" id="woman" name="fisdataspit"
+				value="1" /><label for="woman">是</label></td>
+		</tr>
+		<tr>
+			<td>云:消息对应值：</td>
+			<td><input type="text" name="fvalue" class="easyui-textbox"
+				data-options="width: 150" /></td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.yeetrc.model.sys">
+
+	<sql id="common">
+		<if test="startTime != null">AND inputTime >=str_to_date(#{startTime},'%Y-%m-%d
+			%H:%i:%s')</if>
+		<if test="endTime != null">AND inputTime &lt;str_to_date(#{endTime},'%Y-%m-%d
+			%H:%i:%s')</if>
+	</sql>
+
+	<!-- 查询用户 -->
+	<select id="findUser" parameterType="java.util.Map">
+		select * from sys_user
+		<where>
+			<if test="name != null">
+				(realname like '%'+#{name}+'%' OR phone  like '%'+#{name}+'%'  OR username like
+				'%'+#{name}+'%'  OR email like '%'+#{name}+'%'  or description like '%'+#{name}+'%' )
+			</if>
+			<if test="status != null">AND status = #{status}</if>
+			<include refid="common" />
+		</where>
+	</select>
+	<!-- 查询日志 -->
+	<select id="findLog" parameterType="java.util.Map">
+		select * from sys_log
+		<where>
+			<if test="name != null">
+				(optUser like '%'+#{name}+'%' OR realname like 
+				'%'+#{name}+'%' OR os like '%'+#{name}+'%' OR
+				browser like '%'+#{name}+'%' OR isSuccess=#{name})
+			</if>
+			<include refid="common" />
+		</where>
+	</select>
+
+
+
+	<!-- 查询菜单/权限 -->
+	<select id="findPrivilege" parameterType="java.util.Map">
+		select * from sys_privilege
+		<where>
+			<if test="status != null">status = #{status}</if>
+			<if test="id != null">AND id = #{id}</if>
+			<if test="parentId != null">AND parentId = #{parentId}</if>
+			<if test="name != null">AND name like '%'+#{name+'%')</if>
+			<if test="type!=null">and type=#{type}</if>
+		</where>
+	</select>
+	<!-- 查询角色 -->
+	<select id="findRole" parameterType="java.util.Map">
+		select * from sys_role
+		<where>
+			<if test="status != null">status = #{status}</if>
+			<if test="name != null">AND name like '%'+#{name}+'%')</if>
+		</where>
+	</select>
+	<select id="findDictitem" parameterType="java.util.Map">
+		select * from
+		sys_dictitem
+	</select>
+</mapper>
