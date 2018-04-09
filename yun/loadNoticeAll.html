@@ -8,9 +8,11 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		
 		<title>威高集团公告</title>
+		<link rel="stylesheet" href="${ctx}/static/css/mui.min.css"/>
 		<script type="text/javascript" src="${ctx}/static/js/uploadify/jquery-1.10.2.js"></script>
 		<script src="${ctx}/static/js/iscroll-probe.js"></script>
-		
+		<script src="${ctx}/static/js/mui.js"></script>
+		<script type="text/javascript" src="http://wb.weigaoholding.com:8090/res/js/qingjs.js"></script>
 		<style type="text/css">
 			html {
 				-ms-touch-action: none;
@@ -102,8 +104,8 @@
 				padding: 0 10px;
 				height: 40px;
 				line-height: 40px;
-				border-bottom: 1px solid #ccc;
-				border-top: 1px solid #fff;
+				/*border-bottom: 1px solid #ccc;*/
+				/*border-top: 1px solid #fff;*/
 				background-color: #fafafa;
 				font-size: 14px;
 			}
@@ -118,13 +120,15 @@
 				height:40px;
 				line-height:40px;
 				padding:5px 10px;
-				border-bottom:1px solid #ccc;
+				/*border-bottom:1px solid #ccc;*/
 				font-weight:bold;
 				font-size:14px;
 				color:#888;
 				margin-top:0;
 				white-space: nowrap;
-				font-size:14px;
+				font-size:10px;
+				text-align: center;
+
 			}
 			
 			.pullDown.scrolledUp{
@@ -132,9 +136,10 @@
 			}
 			.pullDown .pullDownLabel, .pullUp .pullUpLabel  {	
 				margin: 0 5px;
+
 			}
 			.pullDown .pullDownIcon, .pullUp .pullUpIcon  {	
-				display: inline-block; 
+				display:none;
 				width:40px; height:40px;
 				/* //background:url(pull-icon@2x.png) 0 0 no-repeat; */
 				-webkit-background-size:40px 80px; background-size:40px 80px;
@@ -335,7 +340,7 @@
 							if (this.y > pullDownOffset+pullThreshold && !pullDownEl.className.match('flip')) {
 								showPullDownElNow('flip');
 								this.scrollBy(0,-pullDownOffset, 0);	// Adjust scrolling position to match the change in pullDownEl's margin-top
-								pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Release to refresh...';
+								pullDownEl.querySelector('.pullDownLabel').innerHTML = '释放刷新...';
 							} else if (this.y < 0 && pullDownEl.className.match('flip')) { // User changes his mind...
 								hidePullDownEl(0,false);
 								this.scrollBy(0,pullDownOffset, 0);	// Adjust scrolling position to match the change in pullDownEl's margin-top
@@ -345,7 +350,7 @@
 						if (pullUpEl) {
 							if (this.y < (this.maxScrollY - pullThreshold) && !pullUpEl.className.match('flip')) {
 								pullUpEl.className = 'pullUp flip';
-								pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Release to load more...';
+								pullUpEl.querySelector('.pullUpLabel').innerHTML = '释放加载更多...';
 							} else if (this.y > (this.maxScrollY + pullThreshold) && pullUpEl.className.match('flip')) {
 								pullUpEl.className = 'pullUp';
 								pullUpEl.querySelector('.pullUpLabel').innerHTML = '上拉刷新';
@@ -356,12 +361,12 @@
 					me.myScroll.on('scrollEnd',function() {
 						if ((pullDownEl)&&(pullDownEl.className.match('flip'))) {
 							showPullDownElNow('loading');
-							pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';
+							pullDownEl.querySelector('.pullDownLabel').innerHTML = '加载中...';
 							pullDownActionHandler(this);	// Execute custom function (ajax call?)
 						}
 						if ((pullUpEl)&&(pullUpEl.className.match('flip'))) {
 							pullUpEl.className = 'pullUp loading';
-							pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';
+							pullUpEl.querySelector('.pullUpLabel').innerHTML = '加载中...';
 							pullUpActionHandler(this);	// Execute custom function (ajax call?)
 						}
 						if (scrollStartPos=-1000) {
@@ -389,16 +394,26 @@
 			
 			
 			
-			document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+			// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 		</script>
 	</head>
 	
 	<body style="width:100%;height: 100%;">
 	<div style="margin: 0 auto;">
-	<div style="margin:0 auto;width:100%;height: 100%;position:fixed; top:0;"><form action="${ctx}/t_notice_base/loadNoticeAll2"><input type="hidden" class="openidset" name="openid" value="${openid !}" ><input type="text" class="form-control sounchID" name ="sounch" value="${msg !}" placeholder="搜索内容" style="height: 33px;width: 100%;" ></form></div>
+		<div style="margin:0 auto;width:100%;height: 100%;position:fixed; top:0;">
+			<form action="${ctx}/t_notice_base/loadNoticeAll2" style="background-color:#FFFFFF;display: flex;flex-direction: row;" class="mui-row">
+				<input type="hidden" class="openidset" name="openid" value="${openid !}" >
+				<input type="text" class="form-control sounchID mui-col-xs-10" name ="sounch" value="${msg !}" placeholder="搜索内容" style="width: 96%;margin-left: 2%;margin-right: 2%;font-size: 12px; margin-top: 1%;">
+				<div class="mui-col-xs-2" id="publish_btn" style="display: flex;align-content:center;justify-content: center;flex-direction: column;">
+					<!--<span class="mui-icon mui-icon-plusempty"   style="width: 10%;height: auto;width: auto;font-size: 48px;">-->
+					<!--</span>-->
+					<p style="color: #0b93d5;font-size: 14px;">发公告</p>
+				</div>
+			</form>
+		</div>
 	<div id="wrapper" style="background-color:#FFFFFF;">
-	<div class="iScroller">
-	<div id="thelist" style="background-color:#FFFFFF;height: 100%;">
+	  <div class="iScroller">
+	      <div id="thelist" style="background-color:#FFFFFF;height: 100%;margin-top: 20px;">
 	
 	
 	
@@ -406,21 +421,20 @@
 	<#if noticeList??>
 	<#list noticeList as k>
 	
-	<!--
-    	one start
-    -->
-	<div class="Noticediv" style="margin:8% auto;width: 90%;background-color: #FFFFFF;border: 1px dashed #337ab7; -moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius:15px;">
-	<input type="hidden" name="id"  class="Noticeid" value="${k.id !}" />
-		<div style="margin:8% auto;width: 90%;background-color: #FFFFFF; -moz-border-radius: 15px;-webkit-border-radius: 15px;border-radius:15px;">
-			<h2>${k.ftitle !}</h2>
-			<div style="height: 30%;width: 80%;word-wrap: break-word;">点击查看详情...</div>
-			
-			<div><span>${k.freleasetime !}</span><span  style="float:right;" >${k.title !}</span></div>
+		<!--
+			one start
+		-->
+		<div class="Noticediv" style="margin:1% auto; width: 95%;background-color: #FFFFFF;border-bottom: 1px solid #a7a7a7;">
+			<input type="hidden" name="id"  class="Noticeid" value="${k.id !}" />
+			<div style="margin:1% auto; width: 95%;background-color: #FFFFFF; ">
+				<h4 style="font-weight: bold;font-size: 14px;">${k.ftitle !}</h4>
+				<!--<div style="height: 30%;width: 80%;word-wrap: break-word;">点击查看详情...</div>-->
+				<div><span style="float:left;">${k.freleasetime !}</span>&nbsp;<span>${k.title !}</span></div>
+			</div>
 		</div>
-	</div>
-	<!--
-    	one end
-    -->
+		<!--
+			one end
+		-->
     
     </#list>
     </#if>
@@ -432,38 +446,66 @@
 		
 		
 		<script>
-		var startTime = 0;
-		$(".Noticediv").on("touchstart",function(){
-			 startTime = new Date().getTime()
-			
-		}); 
-		
-		$(".Noticediv").on("touchend",function(){
-			var endTime = new Date().getTime()
-			var iii = endTime -startTime;
-		/* 	alert(endTime+"-"+startTime+"="+iii); */
-			
-			if(iii<=85){
-				var id=	$(this).find('input').val();
-				var openidset =$('.openidset').val();
-				window.location.href="${ctx}/t_notice_base/loadNoticeOne1?noticeid="+id+"&openid="+openidset;
-			}
-			
-		});
-		   
-		  /*  
-		   $('.Noticediv').on('touchend',function(e) {
+		/**原有短按事件**/
 
-		       var touch = e.originalEvent.changedTouches[0]; 
+        // var startTime = 0;
+        // $(".Noticediv").on("touchstart",function(){
+        //     startTime = new Date().getTime()
+        //
+        // });
+        //
+        // $(".Noticediv").on("touchend",function(){
+        //     var endTime = new Date().getTime()
+        //     var iii = endTime -startTime;
+        //     /* 	alert(endTime+"-"+startTime+"="+iii); */
+        //
+        //     if(iii<=85){
+        //         var id=	$(this).find('input').val();
+        //         var openidset =$('.openidset').val();
+        //         window.location.href="${ctx}/t_notice_base/loadNoticeOne1?noticeid="+id+"&openid="+openidset;
+        //     }
+        //
+        // });
+        /**使用mui改写的tap事件**/
+        mui.init();
 
-		      var y = touch.pageY;
-		      $('#a001').text(y);
-		   });
-		 */
-		
-		
+        $(".Noticediv").on('tap',function () {
+            var id=	$(this).find('input').val();
+            var openidset =$('.openidset').val();
+            window.location.href="${ctx}/t_notice_base/loadNoticeOne1?noticeid="+id+"&openid="+openidset;
+        });
+        /*
+         $('.Noticediv').on('touchend',function(e) {
+
+             var touch = e.originalEvent.changedTouches[0];
+
+            var y = touch.pageY;
+            $('#a001').text(y);
+         });
+       */
+        $("#publish_btn").on('tap',function () {
+			window.location.href="${ctx}/index";
+        });
+
+        XuntongJSBridge.call('createPop',{
+            'popTitleCallBackId': '1',
+            'items':[
+                {'text':'发布公告','callBackId':'callback1'},
+                {'text':'刷新页面','callBackId':'callback2'}
+            ],
+		},function (result) {
+            if (result.success == true || result.success == 'true') {
+                var callBackId = result.data ? result.data.callBackId : '';
+
+                if (callBackId == 'callback1') {
+                    window.location.href="${ctx}/index";   //打开发布页面
+                }else  if (callBackId == 'callback2') {
+                   window.location.reload();      //刷新页面
+                }
+            }
+        });
 		</script>
 		
-	</div>
+	   </div>
 	</body>
 </html>
