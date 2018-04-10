@@ -403,11 +403,11 @@
 		<div style="margin:0 auto;width:100%;height: 100%;position:fixed; top:0;">
 			<form action="${ctx}/t_notice_base/loadNoticeAll2" style="background-color:#FFFFFF;display: flex;flex-direction: row;" class="mui-row">
 				<input type="hidden" class="openidset" name="openid" value="${openid !}" >
-				<input type="text" class="form-control sounchID mui-col-xs-10" name ="sounch" value="${msg !}" placeholder="搜索内容" style="width: 96%;margin-left: 2%;margin-right: 2%;font-size: 12px; margin-top: 1%;">
+				<input type="text" class="form-control sounchID mui-col-xs-10" name ="sounch" value="${msg !}" placeholder="搜索内容" style="width: 94%;margin-left:4%;margin-right: 2%;font-size: 12px; margin-top: 1%;">
 				<div class="mui-col-xs-2" id="publish_btn" style="display: flex;align-content:center;justify-content: center;flex-direction: column;">
 					<!--<span class="mui-icon mui-icon-plusempty"   style="width: 10%;height: auto;width: auto;font-size: 48px;">-->
 					<!--</span>-->
-					<p style="color: #0b93d5;font-size: 14px;">发公告</p>
+					<p style="color: #0b93d5;font-size: 14px;font-weight: bold;">发公告</p>
 				</div>
 			</form>
 		</div>
@@ -483,6 +483,7 @@
             $('#a001').text(y);
          });
        */
+        
         $("#publish_btn").on('tap',function () {
 			window.location.href="${ctx}/index";
         });
