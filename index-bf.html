@@ -15,34 +15,7 @@
 <script type="text/javascript" src="${ctx}/plugins/jquery-ext/jquery-ext.js"></script>
 <script type="text/javascript" src="${ctx}/plugins/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/index.js"></script>
-	<script type="text/javascript"
-			src="${ctx}/plugins/jquery-ext/easyui-ext.js"></script>
-	<link rel="stylesheet" type="text/css" href="${ctx}/static/css/main.css" />
-	<script type="text/javascript" src="${ctx}/static/js/sys/notice.js"></script>
-	<script>
-        easyExt.initDataGrid('#dg','/t_notice_base/findAllByPage');
-	</script>
-	<script>
-        Date.prototype.Format = function (fmt) { //author: meizz
-            var o = {
-                "M+": this.getMonth() + 1, //月份
-                "d+": this.getDate(), //日
-                "h+": this.getHours(), //小时
-                "m+": this.getMinutes(), //分
-                "s+": this.getSeconds(), //秒
-                "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-                "S": this.getMilliseconds() //毫秒
-            };
 
-            if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-            for (var k in o)
-                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-            return fmt;
-
-
-
-        }
-	</script>
 </head>
 <body id="main" class="easyui-layout">
 	<div data-options="region:'north',border:false" class="north">
@@ -103,64 +76,10 @@
 		</div>
 		<div id="mainTabs" class="easyui-tabs"
 			data-options="fit: true, border: false, showOption: true, enableNewTabMenu: true, tools: '#mainTabs_tools', enableJumpTabMenu: true">
-			<div title="首页" class="center_index" style="margin-top: 0">
-				<!--<center>-->
-					<!--<img src="${ctx}/static/images/index.png" width="300px" />-->
-				<!--</center>-->
-				<table id="dg" title="公告列表" data-options="toolbar:'#toolbar'" style="margin: 0">
-					<thead>
-					<tr>
-						<th data-options="field:'id',hidden:true">id</th>
-						<th data-options="field:'ck',checkbox:true"></th>
-						<th align="center" data-options="field:'fcloumnid',hidden:true" width="10%">fcloumnid</th>
-						<th align="center" data-options="field:'fcloumn'" width="10%">栏目</th>
-						<th align="center" data-options="field:'ftitle'" width="10%">标题</th>
-						<th align="center" data-options="field:'freceRangeId',hidden:true" width="10%">freceRangeId</th>
-						<th align="center" data-options="field:'freceRange'" width="10%">发送范围</th>
-						<!-- <th align="center" data-options="field:'fnoticeDetail'" width="8%">发送内容</th> -->
-						<th align="center" data-options="field:'fuserid',hidden:true" width="8%">fusernameid</th>
-						<th align="center" data-options="field:'fusername'" width="8%">公告负责人</th>
-						<th align="center" width="10%"
-							data-options="field:'fisRelease',formatter:function(value,row,index){if(value=='1'||value==1){return '已发布';}else{return '未发布'}}">是否发布</th>
-						<th align="center"  data-options="field:'fcreatetime',formatter:function(value,row,index){if(value==null){return '';}else{
-                         var unixTimestamp = new Date(value).Format('yyyy-MM-dd hh:mm:ss');
-                         return unixTimestamp.toLocaleString(); }}" width="10%">创建时间</th>
-						<th align="center"  data-options="field:'freleasetime',formatter:function(value,row,index){if(value==null){return '';}else{
-                         var unixTimestamp = new Date(value).Format('yyyy-MM-dd hh:mm:ss');
-                         return unixTimestamp.toLocaleString(); }}" width="10%">发布时间</th>
-
-					</tr>
-					</thead>
-				</table>
-				<div id="toolbar" style="padding: 5px; height: auto;">
-					<div style="display: inline; margin-left: 5px;">
-						<a class="easyui-linkbutton" id="add" data-options="iconCls:'icon-add',plain:true">添加</a>
-						<span class="toolbar-item dialog-tool-separator"></span>
-						<a class="easyui-linkbutton" id="del" data-options="iconCls:'icon-remove',plain:true">删除</a>
-						<span class="toolbar-item dialog-tool-separator"></span>
-						<a class="easyui-linkbutton" id="edit" data-options="iconCls:'icon-edit',plain:true">修改</a>
-						<span class="toolbar-item dialog-tool-separator"></span>
-						<span class="toolbar-item dialog-tool-separator"></span>
-						<a class="easyui-linkbutton" id="uodateVersion" data-options="iconCls:'icon-hamburg-my-account',plain:true">浏览记录查看</a>
-					</div>
-					<div style="margin-left: 4px;">
-						<form action="#" id="tForm" style="display: inline;">
-				<span style="margin-left: 5px;">发布状态：
-					<select class="easyui-combobox" style="width: 100px;" name="oisOpen">
-						<option value="2">全部</option>
-						<option value="1">已发布</option>
-						<option value="0">未发布</option>
-					</select>
-				</span>
-							<span style="margin-left: 25px;">搜索：
-					<input class="easyui-textbox" style="width: 120px;" name="seachId" />
-				</span>
-							<a href="#" class="easyui-linkbutton" style="width: 150px; margin-right: 5px; float: right;" id="search"
-							   iconCls="icon-search">查询</a>
-						</form>
-					</div>
-
-				</div>
+			<div title="首页" class="center_index">
+				<center>
+					<img src="${ctx}/static/images/index.png" width="300px" />
+				</center>
 			</div>
 		</div>
 	</div>
